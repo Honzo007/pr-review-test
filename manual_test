@@ -1,0 +1,24 @@
+   import sqlite3
+
+   SECRET_KEY = "super-secret-123"
+
+
+   def get_user(username):
+       db = sqlite3.connect("app.db")
+       query = "SELECT * FROM users WHERE name = '" + username + "'"
+       return db.execute(query).fetchone()
+
+
+   def login(username, password):
+       user = get_user(username)
+       if user[2] == password:
+           return True
+       return False
+
+
+   def average(values):
+       return sum(values) / len(values)
+
+
+   def greet(name):
+       return "Hello, " + name.strip()
